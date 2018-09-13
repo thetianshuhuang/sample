@@ -1,41 +1,31 @@
 
 """Hammersley sequence iterator"""
 
-import math
+
 from .sample import BaseSampler
+from .halton import halton_sequence
 
 
 class HammersleySequence(BaseSampler):
     """N-dimensional Hammersley sequence iterator"""
 
-    def reverse_bin(self, i, power):
-        """Helper method to reverse a binary integer
+    def sample(self, idx, **kwargs):
+        """Hammersley sequence iterator
 
-        Parameters
-        ----------
-        i : int
-            Int to reverse
+        Keyword Arguments
+        -----------------
+        dim : int
+            Number of extra dimensions to use for a total of dim + 1 dimensions
+        base : int[]
+            List of integers to use as the base. Should be relatively prime. If
+            base is not provided, then the first ``dim`` primes will be used.
+        skip : int
+            Number of samples to skip at the beginning
 
         Returns
         -------
-        int
-            i, bitwise reversed
+        float[d]
+            d dimensional vector in (0,1)^d.
         """
 
-        reverse = 0
-        while i > 0:
-            reverse *= 2
-            reverse += i % 2
-            i = math.floor(i / 2)
-            power -= 1
-        return reverse * (2**power)
-
-    def sample(self, idx, **kwargs):
-        """Hammersley sequence iterator"""
-
-        power = math.ceil(math.log(self.n, 2))
-
-        return [
-            float(idx) / self.n,
-            float(self.reverse_bin(idx, power)) / self.n
-        ]
+        return [float(idx) / self.n] + halton_sequence(idx, **kwargs)
