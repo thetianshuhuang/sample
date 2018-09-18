@@ -1,6 +1,8 @@
 
 """Python sampling framework"""
 
+import random
+
 
 class BaseSampler:
     """Base sampler iterator class
@@ -64,3 +66,27 @@ class BaseSampler:
             "Attempted to call base sampler class without" +
             "overriding BaseSampler.next")
         return None
+
+
+class SimpleRandomSample(BaseSampler):
+    """Simple random sampler
+
+    Iterator that returns numbers between 0 and 1 with dimension dim using
+    Python's random.random module.
+    """
+
+    def sample(self, idx, **kwargs):
+        """Simple random sample iterator
+
+        Keyword Args
+        ------------
+        dim : int
+            Number of dimensions to return
+        """
+
+        if "dim" in kwargs:
+            d = kwargs["dim"]
+        else:
+            d = 1
+
+        return [random.random() for i in range(d)]
