@@ -24,5 +24,5 @@ class BoxMuller(BaseSampler):
 
         return [
             math.sqrt(-2 * math.log(x[0])) * math.cos(2 * math.pi * x[1]),
-            math.sqrt(-2 * math.log(x[1])) * math.sin(2 * math.pi * x[0]),
+            math.sqrt(-2 * math.log(x[0])) * math.sin(2 * math.pi * x[1]),
         ]

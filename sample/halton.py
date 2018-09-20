@@ -61,7 +61,7 @@ def halton_sequence(idx, **kwargs):
     # We assume that the user will supply coprime integers if this class
     # is used beyond a simple example.
     if d <= 5 and "base" not in kwargs:
-        base = [2, 3, 6, 7, 11][:(d)]
+        base = [2, 3, 5, 7, 11][:(d)]
     elif d > 5 and "base" not in kwargs:
         raise Exception("Coprime bases must be supplied for d>=5.")
     else:
