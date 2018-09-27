@@ -1,5 +1,6 @@
 
-from sample import HaltonSequence, ThreadedMonteCarlo
+import sys
+from sample import HaltonSequence, MonteCarlo
 
 
 def in_circle(x):
@@ -7,7 +8,7 @@ def in_circle(x):
 
 
 def compute_pi(n):
-    mc = ThreadedMonteCarlo(in_circle, n, sample=HaltonSequence, dim=2)
+    mc = MonteCarlo(in_circle, n, sample=HaltonSequence, dim=2)
     print(
         (
             "Pi={mean} computed using {samples} " +
@@ -16,4 +17,8 @@ def compute_pi(n):
 
 
 if __name__ == "__main__":
-    compute_pi(10000000)
+
+    try:
+        compute_pi(int(sys.argv[1]))
+    except Exception as e:
+        print("Invalid input:" + str(e))

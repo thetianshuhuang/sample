@@ -3,12 +3,11 @@
 
 Examples
 --------
->>> from sample import HaltonSequence
+>>> from sample import HaltonSequence, MonteCarlo
 >>> v = lambda point: point[0]**2 + point[1]**2 < 1
->>> pi = MonteCarlo(v, 10000, sample=HaltonSequence, dim=2).mean * 4
+>>> pi = MonteCarlo(v, 1000000, sample=HaltonSequence, dim=2).mean * 4
 >>> pi
-
-
+3.1415968
 """
 
 import warnings
