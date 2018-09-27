@@ -12,6 +12,7 @@ Examples
 """
 
 import warnings
+import time
 from .sample import SimpleRandomSample
 
 
@@ -72,11 +73,14 @@ class MonteCarlo:
             self, value_function, n,
             sample=SimpleRandomSample, **kwargs):
 
+        start_time = time.time()
+
         # Check for integer n
         if type(n) != int:
-            warnings.warn(
-                "The number of samples {n} is not an integer, and has been"
-                "rounded down to an integer.", n=n)
+            warning = (
+                "The number of samples {samples} is not an integer, and has "
+                "been rounded down to an integer.").format(samples=n)
+            warnings.warn(warning)
             n = int(n)
         self.n = n
 
@@ -102,3 +106,5 @@ class MonteCarlo:
             for point in sample(n, **kwargs):
                 total += value_function(point)
             self.mean = total * 1. / n
+
+        self.time = time.time() - start_time
