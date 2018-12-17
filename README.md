@@ -2,7 +2,7 @@
 
 A collection of low-discrepancy sampling routines
 
-<img style="width: 50%" src="https://github.com/thetianshuhuang/sample/blob/master/voronoi.png">
+<img width=250 src="https://github.com/thetianshuhuang/sample/blob/master/voronoi.png">
 
 ## Usage
 
