@@ -2,7 +2,6 @@
 
 A collection of low-discrepancy sampling routines
 
-
 ## Usage
 
 The ```sample``` module provides several low-discrepancy sampling iterators. All iterators are initialized with the number of desired samples, and an optional dimension argument:
